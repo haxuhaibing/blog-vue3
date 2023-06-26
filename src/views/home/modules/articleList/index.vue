@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-25 20:27:42
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2023-06-25 21:20:37
+ * @LastEditTime: 2023-06-25 22:18:27
  * @FilePath: /blog-vue3/src/views/home/modules/articleList/index.vue
 -->
 <template>
@@ -25,11 +25,10 @@
 
 <script setup lang="ts">
 import { getList } from '@/api/articleApi'
-import { type Iresponse } from '@/interface/axiosInterface'
 import { ref } from 'vue'
 const dataList: any = ref([])
 async function loadData() {
-  let listResponse: Iresponse = await getList()
+  let listResponse: any = await getList()  
   if (listResponse.success) {
     dataList.value = listResponse.result.records || []
   }

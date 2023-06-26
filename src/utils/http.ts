@@ -1,10 +1,4 @@
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  AxiosError,
-} from "axios";
-import { IResponse } from "@/interface/httpInterface";
+import axios from "axios"; 
 import { useStorage } from "vue3-storage";
 import {currentSite} from "@/config/config";
 import router from "@/router";
@@ -12,7 +6,7 @@ axios.defaults.baseURL =currentSite.api;
 axios.defaults.timeout = 30000; //20秒超时storage.getStorageSync("token") ||
 const storage = useStorage();
 axios.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config: any) => {
     if (storage.getStorageSync("token") != null) {
        config.headers = config.headers ?? {};
       config.headers["X-Access-Token"] = storage.getStorageSync(
@@ -22,15 +16,15 @@ axios.interceptors.request.use(
     }
     return config;
   },
-  (err: AxiosError<IResponse, any>) => Promise.reject(err)
+  (err: any) => Promise.reject(err)
 );
 // http response 拦截器
 axios.interceptors.response.use(
-  (response: AxiosResponse<IResponse, any>) => {
+  (response: any) => {
     let data = response.data;
     return data;
   },
-  (error: AxiosError<IResponse, any>) => {
+  (error: any) => {
     console.log("error.response", error);
     if (error.toString().includes("Network Error")) {
      // showFailToast("网络异常，请检查网络!");
@@ -81,10 +75,10 @@ axios.interceptors.response.use(
 export function post(url: string, data = {}, config = {}) {
   return new Promise((resolve, reject) => {
     axios.post(url, data, config).then(
-      (response: AxiosResponse<IResponse, any>) => {
+      (response: any) => {
         resolve(response);
       },
-      (error: AxiosError<IResponse, any>) => {
+      (error: any) => {
         reject(error);
       }
     );
@@ -98,10 +92,10 @@ export function uploadFile(url: string, data: any = {}, config: any = {}) {
       headers: { "Content-Type": "multipart/form-data" },
     };
     axios.post(url, data, config).then(
-      (response: AxiosResponse<IResponse, any>) => {
+      (response: any) => {
         resolve(response);
       },
-      (error: AxiosError<IResponse, any>) => {
+      (error: any) => {
         reject(error);
       }
     );
@@ -118,7 +112,7 @@ export function get(url: string, params = {}) {
         (response: any) => {
           resolve(response);
         },
-        (error: AxiosError<IResponse, any>) => {
+        (error: any) => {
           reject(error);
         }
       );
@@ -128,10 +122,10 @@ export function get(url: string, params = {}) {
 export function put(url: string, data = {}) {
   return new Promise((resolve, reject) => {
     axios.put(url, data).then(
-      (response: AxiosResponse<IResponse, any>) => {
+      (response: any) => {
         resolve(response);
       },
-      (error: AxiosError<IResponse, any>) => {
+      (error: any) => {
         reject(error);
       }
     );
@@ -148,7 +142,7 @@ export function del(url: string, data = {}) {
         (response: any) => {
           resolve(response);
         },
-        (error: AxiosError<IResponse, any>) => {
+        (error: any) => {
           reject(error);
         }
       );

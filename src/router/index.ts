@@ -1,8 +1,8 @@
 /*
  * @Date: 2023-06-25 16:01:59
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2023-06-25 16:09:06
- * @FilePath: /blog-vue3/src/router/index.ts
+ * @LastEditTime: 2023-06-26 16:16:03
+ * @FilePath: /blog-xuhaibing.com/src/router/index.ts
  */
 import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
@@ -17,7 +17,13 @@ const router = createRouter({
         keepAlive: false,
         title: '移动审批'
       }
-    }
+    },
+    {
+      path: "/",
+      redirect: {
+        name: "home",
+      },
+    },
   ]
 })
 
