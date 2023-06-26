@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-26 18:14:47
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2023-06-26 18:47:23
+ * @LastEditTime: 2023-06-26 21:02:20
  * @FilePath: /blog-xuhaibing.com/src/views/article/Article.vue
 -->
 <template>
@@ -22,11 +22,8 @@ import { geQueryById } from '@/api/articleApi'
 const route = useRoute()
 const detailData: any = ref({})
 
-watchEffect(async () => {
-  let id = route.params.id
-  loadData(id)
-})
-function loadData(id) {
+
+function loadData(id: string) {
   let params = {
     id
   }
@@ -36,6 +33,11 @@ function loadData(id) {
     }
   })
 }
+
+watchEffect(async () => {
+  let id = route.params.id as string;
+  loadData(id)
+})
 </script>
 
 <style scoped>
