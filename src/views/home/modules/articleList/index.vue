@@ -1,15 +1,18 @@
 <!--
  * @Date: 2023-06-25 20:27:42
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2023-06-25 22:18:27
- * @FilePath: /blog-vue3/src/views/home/modules/articleList/index.vue
+ * @LastEditTime: 2023-06-26 18:20:47
+ * @FilePath: /blog-xuhaibing.com/src/views/home/modules/articleList/index.vue
 -->
 <template>
   <div class="home-article-list">
     <div class="item" v-for="item of dataList" :key="item.id">
       <div class="item-content">
         <div class="item-title">
-          <span class="title">{{ item.title }}</span>
+          <RouterLink :to="'/article/' + item.id">
+            <span class="title">{{ item.title }}</span></RouterLink
+          >
+
           <span class="date">{{ item.createTime }}</span>
         </div>
         <div class="item-details">
@@ -28,7 +31,7 @@ import { getList } from '@/api/articleApi'
 import { ref } from 'vue'
 const dataList: any = ref([])
 async function loadData() {
-  let listResponse: any = await getList()  
+  let listResponse: any = await getList()
   if (listResponse.success) {
     dataList.value = listResponse.result.records || []
   }
