@@ -4,9 +4,10 @@
 
 html,
 body {
-  background-color: #fff;
+  background-color: var(--bg-color);
   font-size: 14px;
   margin: 0;
+  color: #333;
 }
 
 blockquote,
@@ -52,4 +53,17 @@ img {
 }
 a {
   color: #333;
+}
+
+.mt24 {
+  margin-top: 24px;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  overflow: hidden;
+  font-size: 16px;
+  display: inline-flex;
 }
