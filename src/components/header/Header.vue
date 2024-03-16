@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-25 16:17:03
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2024-02-25 20:29:59
+ * @LastEditTime: 2024-03-12 22:51:41
  * @FilePath: /blog-xuhaibing.com/src/components/header/Header.vue
 -->
 <template>
@@ -16,14 +16,11 @@
 <script setup lang="ts">
 import CLogo from './components/CLogo.vue'
 import CNav from "./components/CNav.vue"
-import CSocial from "./components/CSocial.vue"
-
-console.log(import.meta.env)
+import CSocial from "./components/CSocial.vue" 
 </script>
 <style lang="scss" scoped>
 header {
-  background-color: #fff;
-  box-shadow: 0 2px 8px #f2f3f5;
+  background-color: rgb(var(--ui-background) / .75); 
   .container {
     padding: 16px 36px;
     display: flex;

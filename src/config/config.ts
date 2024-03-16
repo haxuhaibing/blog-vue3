@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-01-25 17:41:58
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2023-06-26 18:52:29
+ * @LastEditTime: 2024-03-08 10:37:06
  * @FilePath: /blog-xuhaibing.com/src/config/config.ts
  */
 let currentSite: any = {}
@@ -28,6 +28,5 @@ for (let item of SITELIST) {
     currentSite = item
     break
   }
-}
-console.dir({ currentSite })
+} 
 export { currentSite }

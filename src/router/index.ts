@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-06-25 16:01:59
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2024-02-25 21:12:38
+ * @LastEditTime: 2024-03-16 16:27:29
  * @FilePath: /blog-xuhaibing.com/src/router/index.ts
  */
 import { createRouter, createWebHistory } from 'vue-router'
@@ -54,7 +54,17 @@ const router = createRouter({
         title: 'demo'
       }
     }
-  ]
+    ,
+    {
+      path: '/tsx',
+      name: 'tsx',
+      component: () => import(/* webpackChunkName: "demo" */ '../views/tsx/demo.tsx'),
+      meta: {
+        isFooter: false,
+        keepAlive: false,
+        title: 'tsx'
+      }
+    }  ]
 })
 
 export default router

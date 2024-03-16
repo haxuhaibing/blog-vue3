@@ -12,3 +12,4 @@ export interface Iresponse {
   result: any;
   [key: string]: any;
 }
+ 

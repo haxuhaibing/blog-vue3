@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-25 16:42:20
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2023-06-26 18:49:01
+ * @LastEditTime: 2024-03-12 22:52:51
  * @FilePath: /blog-xuhaibing.com/src/components/header/components/CNav.vue
 -->
 <template>
@@ -24,7 +24,7 @@ const navList = ref([
   },
   {
     name: '分类',
-    url: '/classify'
+    url: '/home'
   },
   {
     name: '关于我',
@@ -50,9 +50,7 @@ const navList = ref([
   }
   .active,
   .item:hover {
-    span {
-      box-shadow: 0 0 #0000, 0 0 #0000, inset 0 2px 4px #0000000d;
-      background: var(--primary-hover-color);
+    span { 
     }
   }
 }
