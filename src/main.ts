@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-06-25 16:01:59
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2024-02-23 15:39:29
+ * @LastEditTime: 2024-03-20 20:13:21
  * @FilePath: /blog-xuhaibing.com/src/main.ts
  */
  
@@ -16,7 +16,21 @@ import 'ant-design-vue/dist/reset.css';
 import "@/styles/common.scss";
 import "@/styles/variable.scss";
 import CIcon from '@/components/CIcon.vue'
+import VMdPreview from '@kangc/v-md-editor/lib/preview';
+import '@kangc/v-md-editor/lib/style/preview.css';
+import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
+import '@kangc/v-md-editor/lib/theme/style/github.css';
+
+// highlightjs
+import hljs from 'highlight.js';
+
+VMdPreview.use(githubTheme, {
+  Hljs: hljs,
+});
+app.use(VMdPreview);
 app.component('CIcon', CIcon)
+
+ 
 app.use(createPinia())
 app.use(Antd)
 app.use(router)

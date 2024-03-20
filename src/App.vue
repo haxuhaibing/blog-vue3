@@ -1,14 +1,14 @@
 <!--
  * @Date: 2023-06-25 16:01:59
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2024-03-16 16:27:58
+ * @LastEditTime: 2024-03-20 20:49:11
  * @FilePath: /blog-xuhaibing.com/src/App.vue
 -->
 
 <template>
-  <!-- <CHeader></CHeader> -->
+  <CHeader></CHeader>
   <RouterView />
-  <!-- <CFooter></CFooter>  -->
+  <CFooter></CFooter>
 </template>
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
