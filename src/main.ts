@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-06-25 16:01:59
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2024-03-20 20:13:21
+ * @LastEditTime: 2024-03-20 23:06:04
  * @FilePath: /blog-xuhaibing.com/src/main.ts
  */
  
@@ -15,6 +15,7 @@ const app = createApp(App)
 import 'ant-design-vue/dist/reset.css';
 import "@/styles/common.scss";
 import "@/styles/variable.scss";
+import '@/styles/tailwind.css'
 import CIcon from '@/components/CIcon.vue'
 import VMdPreview from '@kangc/v-md-editor/lib/preview';
 import '@kangc/v-md-editor/lib/style/preview.css';

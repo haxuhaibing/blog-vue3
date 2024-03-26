@@ -1,74 +1,83 @@
 <!--
  * @Date: 2024-02-22 20:14:03
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2024-02-22 20:22:26
+ * @LastEditTime: 2024-03-26 00:01:26
  * @FilePath: /blog-xuhaibing.com/src/views/article/modules/ArticleCommentList.vue
 -->
 <template>
+  <a-comment>
+    <template #avatar>
+      <a-avatar :src="getImageUrl('default.jpg')" alt="Han Solo" />
+    </template>
+    <template #content>
+      <a-form-item>
+        <a-textarea v-model:value="form.comment" :rows="4" placeholder="说点什么吧" />
+      </a-form-item>
+      <a-form-item>
+        <a-button :loading="loadingComment" html-type="submit" type="primary" @click="handleSubmit">
+          提交评论
+        </a-button>
+      </a-form-item>
+    </template>
+  </a-comment>
   <a-list
-    v-if="comments.length"
-    :data-source="comments"
-    :header="`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`"
+    v-if="dataSource.length"
+    :data-source="dataSource"
+    :header="`评论数量：${dataSource.length}`"
     item-layout="horizontal"
   >
     <template #renderItem="{ item }">
       <a-list-item>
         <a-comment
-          :author="item.author"
-          :avatar="item.avatar"
-          :content="item.content"
-          :datetime="item.datetime"
+          :author="item.createBy || '网友'"
+          :avatar="getImageUrl('default.jpg')"
+          :content="item.comment"
+          :datetime="item.createTime"
         />
       </a-list-item>
     </template>
   </a-list>
-  <a-comment>
-    <template #avatar>
-      <a-avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
-    </template>
-    <template #content>
-      <a-form-item>
-        <a-textarea v-model:value="value" :rows="4" />
-      </a-form-item>
-      <a-form-item>
-        <a-button html-type="submit" :loading="submitting" type="primary" @click="handleSubmit">
-          Add Comment
-        </a-button>
-      </a-form-item>
-    </template>
-  </a-comment>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-dayjs.extend(relativeTime);
+import { onMounted, ref } from 'vue'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import { useRoute } from 'vue-router'
+import { get, post } from '@/utils/http'
+import { message } from 'ant-design-vue'
+import { add, list } from './comment.api'
+dayjs.extend(relativeTime)
+defineOptions({
+  name: 'ArticleCommentAdd'
+})
+const route: any = useRoute()
+import { getImageUrl } from '@/utils/util'
+type Comment = Record<string, string>
+const loadingComment = ref(false)
+const form: any = ref({ comment: '' })
+const dataSource = ref<Comment[]>([])
+async function loadData() {
+  const data = { articleId: route.params.id}
+  let response = list(data)
+  response.then((response: any) => {
+    dataSource.value = response.result.records
+  })
+}
+const handleSubmit = async () => {
+  loadingComment.value = true
+  const data = { articleId: route.params.id, ...form.value }
+  let response: Promise<any> = add(data)
+  response.then((response) => {
+    form.value = {}
+    message.success(response.message)
+  })
+  response.finally(() => {
+    loadingComment.value = false
+    loadData()
+  })
+}
 
-type Comment = Record<string, string>;
-
-const comments = ref<Comment[]>([]);
-const submitting = ref<boolean>(false);
-const value = ref('');
-const handleSubmit = () => {
-  if (!value.value) {
-    return;
-  }
-
-  submitting.value = true;
-
-  setTimeout(() => {
-    submitting.value = false;
-    comments.value = [
-      {
-        author: 'Han Solo',
-        avatar: 'https://joeschmoe.io/api/v1/random',
-        content: value.value,
-        datetime: dayjs().fromNow(),
-      },
-      ...comments.value,
-    ];
-    value.value = '';
-  }, 1000);
-};
+onMounted(() => {
+  loadData()
+})
 </script>
-

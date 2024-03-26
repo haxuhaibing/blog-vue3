@@ -1,7 +1,7 @@
 <!--
  * @Date: 2024-02-22 20:20:09
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2024-02-22 23:59:19
+ * @LastEditTime: 2024-03-25 17:36:14
  * @FilePath: /blog-xuhaibing.com/src/views/article/modules/ArticleCommentBox.vue
 -->
 <template>
@@ -32,7 +32,7 @@
       </a-form-item>
       <a-form-item>
         <a-button html-type="submit" :loading="submitting" type="primary" @click="handleSubmit">
-          Add Comment
+          提交评论
         </a-button>
       </a-form-item>
     </template>
@@ -44,31 +44,17 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
 
+
+
 type Comment = Record<string, string>;
 
 const comments = ref<Comment[]>([]);
 const submitting = ref<boolean>(false);
 const value = ref<string>('');
 const handleSubmit = () => {
-  if (!value.value) {
-    return;
-  }
+ const form={
 
-  submitting.value = true;
-
-  setTimeout(() => {
-    submitting.value = false;
-    comments.value = [
-      {
-        author: 'Han Solo',
-        avatar: 'https://joeschmoe.io/api/v1/random',
-        content: value.value,
-        datetime: dayjs().fromNow(),
-      },
-      ...comments.value,
-    ];
-    value.value = '';
-  }, 1000);
+ }
 };
 </script>
 
