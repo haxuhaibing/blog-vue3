@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-25 16:17:03
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2024-03-22 01:02:04
+ * @LastEditTime: 2024-03-26 22:07:15
  * @FilePath: /blog-xuhaibing.com/src/components/header/Header.vue
 -->
 <template>
@@ -10,6 +10,7 @@
       <div class="container">
         <c-logo />
         <c-nav />
+        <c-search /> 
         <c-social />
       </div>
     </div>
@@ -19,6 +20,7 @@
 import CLogo from './modules/CLogo.vue'
 import CNav from './modules/CNav.vue'
 import CSocial from './modules/CSocial.vue'
+import CSearch from './modules/CSearch.vue'
 </script>
 <style lang="scss" scoped>
 header {
@@ -27,6 +29,7 @@ header {
   .container {
     padding: 16px 36px;
     display: flex;
+    align-items: center;
   }
 }
 

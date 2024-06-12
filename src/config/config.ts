@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-01-25 17:41:58
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2024-03-08 10:37:06
+ * @LastEditTime: 2024-06-12 15:28:07
  * @FilePath: /blog-xuhaibing.com/src/config/config.ts
  */
 let currentSite: any = {}
@@ -12,13 +12,13 @@ const SITELIST = [
     api: 'https://blog.xuhaibing.com/ht/'
   },
   {
-    domain: 'dev.io',
+    domain: 'localhost',
     api: 'http://localhost:8080/jeecg-boot/'
   }
 ]
 
 for (let item of SITELIST) {
-  //前端开发环境 晨光内网2
+  //前端开发环境 
   if (location.host.includes(item.domain)) {
     currentSite = item
     break

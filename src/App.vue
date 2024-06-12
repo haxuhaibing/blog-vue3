@@ -1,14 +1,22 @@
 <!--
  * @Date: 2023-06-25 16:01:59
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2024-03-20 20:49:11
+ * @LastEditTime: 2024-03-26 17:54:20
  * @FilePath: /blog-xuhaibing.com/src/App.vue
 -->
 
 <template>
-  <CHeader></CHeader>
-  <RouterView />
-  <CFooter></CFooter>
+  <a-config-provider
+    :theme="{
+      token: {
+        colorPrimary: '#00b96b'
+      }
+    }"
+  >
+    <CHeader></CHeader>
+    <RouterView />
+    <CFooter></CFooter>
+  </a-config-provider>
 </template>
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'

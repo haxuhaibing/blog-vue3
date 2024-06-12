@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-25 16:08:38
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2024-02-23 15:43:29
+ * @LastEditTime: 2024-03-26 23:52:28
  * @FilePath: /blog-xuhaibing.com/src/views/home/Home.vue
 -->
 <template>
@@ -27,6 +27,7 @@ import HomeRecommend from './modules/HomeRecommend.vue'
 <style lang="scss" scoped>
 .home-container{
  background-color: var(--bg-color);
+ min-height:calc(100vh - 68px - 81px) ;
 }
 
 </style>
