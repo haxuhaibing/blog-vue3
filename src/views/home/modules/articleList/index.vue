@@ -1,36 +1,38 @@
 <!--
  * @Date: 2023-06-25 20:27:42
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2024-02-23 12:17:19
+ * @LastEditTime: 2024-06-23 13:50:27
  * @FilePath: /blog-xuhaibing.com/src/views/home/modules/articleList/index.vue
 -->
 <template>
-  <a-card :bodyStyle="{ padding: '8px 16px' }">
-    <div class="home-article-list">
-      <a-skeleton :loading="loading" active  >
-        <div class="item" v-for="item of dataList" :key="item.id">
-          <div class="item-body">
-            <div class="item-content">
-              <div class="item-title">
-                <RouterLink :to="'/article/' + item.id">
-                  <span class="title">{{ item.title }}</span></RouterLink
-                >
+  <div>
+    <a-input-search
+      v-model:value="form.keyword"
+      placeholder="请输入产品名称"
+      size="large"
+      style="width: 100%"
+      enter-button
+      @search="onSearch"
+    />
+  </div>
 
-                <span class="date">{{ item.createTime }}</span>
-              </div>
-              <div class="item-details" v-html="item.content"></div>
-            </div>
+  <div class="home-article-list container">
+    <a-skeleton :loading="loading" active>
+      <div class="item" v-for="item of dataList" :key="item.id">
+        <router-link :to="'/product/'+item.id">
+          <div class="item-thumb">
+            <img :src="item.thumb" alt="" />
           </div>
-          <div class="item-footer">
-            <div class="item-tag">
-              {{ item.createBy || 'admin' }}
-            </div>
-            <a-tag :bordered="false"> {{ item.type_dictText }}</a-tag>
+          <div class="item-title">
+            <span>{{ item.title }}</span>
           </div>
-        </div>
-      </a-skeleton>
-    </div>
-  </a-card>
+        </router-link>
+      </div>
+    </a-skeleton>
+  </div>
+  <div>
+    <a-pagination v-model:current="paginationParams.current" :total="paginationParams.total" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -38,8 +40,25 @@ import { getList } from '@/api/articleApi'
 import { ref, nextTick } from 'vue'
 const dataList: any = ref([])
 const loading = ref(true)
+
+//seach
+const form = ref({
+  keyword: ''
+})
+
+const paginationParams = ref({
+  current: 1,
+  total: 500
+})
+
+function onSearch() {
+  loadData()
+}
 async function loadData() {
-  let listResponse: any = await getList()
+  let params = {
+    title: '*' + form.value.keyword + '*'
+  }
+  let listResponse: any = await getList(params)
   if (listResponse.success) {
     dataList.value = listResponse.result.records || []
   }
@@ -51,9 +70,15 @@ loadData()
 
 <style scoped lang="scss">
 .home-article-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 -8px;
   .item {
-    border-bottom: 1px solid var(--primary-border-color);
+    // border-bottom: 1px solid var(--primary-border-color);
+    width: calc(25% - 16px);
     padding: 8px 0;
+    margin: 8px;
     &:last-child {
       border-bottom: none;
     }
@@ -65,9 +90,8 @@ loadData()
 
   .item-thumb {
     border-radius: 4px;
-    height: 120px;
-    width: 240px;
-    margin-left: 16px;
+    height: 280px;
+    border: 1px solid #f1f1f1;
     img {
       display: block;
       width: 100%;
@@ -77,15 +101,14 @@ loadData()
     }
   }
 
-  .item-content {
-    flex: 1;
-  }
   .item-title {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 8px;
+    height: 50px;
     .title {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 500;
     }
     .date {

@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-06-25 16:01:59
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2024-03-16 16:27:29
+ * @LastEditTime: 2024-06-23 13:50:28
  * @FilePath: /blog-xuhaibing.com/src/router/index.ts
  */
 import { createRouter, createWebHistory } from 'vue-router'
@@ -28,6 +28,16 @@ const router = createRouter({
       path: '/article/:id',
       name: 'article',
       component: () => import(/* webpackChunkName: "article" */ '../views/article/Article.vue'),
+      meta: {
+        isFooter: false,
+        keepAlive: false,
+        title: '移动审批'
+      }
+    },
+    {
+      path: '/product/:id',
+      name: 'product',
+      component: () => import(/* webpackChunkName: "article" */ '../views/product/product.vue'),
       meta: {
         isFooter: false,
         keepAlive: false,

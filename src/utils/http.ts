@@ -5,6 +5,7 @@ import router from "@/router";
 axios.defaults.baseURL =currentSite.api;
 axios.defaults.timeout = 30000; //20秒超时storage.getStorageSync("token") ||
 const storage = useStorage();
+storage.setStorageSync('token','eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTg3MzQ5NzksInVzZXJuYW1lIjoiYWRtaW4ifQ.EPI2YNM5J4kzbwhj8kY9V1Zh2IpYZcV4dJ4UaKMdsFQ');
 axios.interceptors.request.use(
   (config: any) => {
     if (storage.getStorageSync("token") != null) {
