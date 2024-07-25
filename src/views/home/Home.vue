@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-25 16:08:38
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2024-06-13 20:49:49
+ * @LastEditTime: 2024-06-24 21:22:55
  * @FilePath: /blog-xuhaibing.com/src/views/home/Home.vue
 -->
 <template>
@@ -18,8 +18,17 @@
 </template>
 
 <script setup lang="ts">
+import { onUnmounted ,onMounted} from 'vue';
 import ArticleList from './modules/articleList/index.vue'
 import HomeRecommend from './modules/HomeRecommend.vue'
+
+onMounted(() => {
+  document.body.classList.add('html-gray')
+})
+
+onUnmounted(() => {
+  document.body.classList.remove('html-gray')
+})
 </script>
 
 <style lang="scss" scoped>

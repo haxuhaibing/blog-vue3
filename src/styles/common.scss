@@ -4,10 +4,13 @@
 
 html,
 body {
-  background-color: var(--bg-color);
+
   font-size: 14px;
   margin: 0;
   color: #333;
+}
+.html-gray{
+  background-color: var(--bg-color);
 }
 
 blockquote,

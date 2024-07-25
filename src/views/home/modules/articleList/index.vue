@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-06-25 20:27:42
  * @LastEditors: hi@xuhaibing.com
- * @LastEditTime: 2024-06-23 13:50:27
+ * @LastEditTime: 2024-06-24 22:17:05
  * @FilePath: /blog-xuhaibing.com/src/views/home/modules/articleList/index.vue
 -->
 <template>
@@ -21,7 +21,7 @@
       <div class="item" v-for="item of dataList" :key="item.id">
         <router-link :to="'/product/'+item.id">
           <div class="item-thumb">
-            <img :src="item.thumb" alt="" />
+            <img :src="item.thumbString" alt="" />
           </div>
           <div class="item-title">
             <span>{{ item.title }}</span>
